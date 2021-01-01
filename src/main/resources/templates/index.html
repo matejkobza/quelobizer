@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <script type="application/javascript">
+        function init() {
+            setInterval(function () {
+                window.location.reload();
+            }, 500);
+        }
+    </script>
+    <style>
+        html, body {
+            color: #afafaf;
+            width: 100%;
+            text-align: center;
+            font-size: 35pt;
+        }
+        .content {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 10pt;
+            clear: both;
+            width: 100%;
+            flex: auto;
+        }
+    </style>
+</head>
+<body onload="init()">
+<div class="content">
+    <span th:utext="${text}"></span>
+<!--    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm:ss')}"></span>-->
+</div>
+</body>
+</html>

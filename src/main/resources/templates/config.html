@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quelobizer - Configuration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<th:block th:if="${error}">
+    <div class="error" th:text="${error}"></div>
+</th:block>
+<form action="#" th:action="@{/config}" th:object="${queleaProperties}" method="post">
+    <h1>Quelea server properties:</h1>
+    <table>
+        <tr>
+            <td>
+                <label for="queleaUrl">URL</label>
+            </td>
+            <td>
+                <input id="queleaUrl" name="url" th:field="*{url}" type="text"/>(eg. http://192.168.100.15:1112)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="queleaPassword">Password</label>
+            </td>
+            <td>
+                <input id="queleaPassword" name="password" type="password" th:field="*{password}"/>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Go"/><br /><br />
+    You can find the url in quelea settings:<br />
+    <img th:src="@{/images/settings.png}" width="800" alt="quelea settings screen"/>
+</form>
+</body>
+</html>

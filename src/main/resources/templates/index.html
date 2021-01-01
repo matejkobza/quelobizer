@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title></title>
+    <title>Quelobizer - Lyrics</title>
     <script type="application/javascript">
         function init() {
             setInterval(function () {
@@ -9,6 +9,7 @@
             }, 500);
         }
     </script>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <style>
         html, body {
             color: #afafaf;
@@ -16,19 +17,11 @@
             text-align: center;
             font-size: 35pt;
         }
-        .content {
-            position: absolute;
-            bottom: 0;
-            margin-bottom: 10pt;
-            clear: both;
-            width: 100%;
-            flex: auto;
-        }
     </style>
 </head>
 <body onload="init()">
 <div class="content">
-    <span th:utext="${text}"></span>
+    <span th:utext="${lyrics}"></span>
 <!--    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm:ss')}"></span>-->
 </div>
 </body>

@@ -1,0 +1,14 @@
+.error {
+    color: red;
+}
+html, body {
+    font-family: Arial, sans-serif;
+}
+.content {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10pt;
+    clear: both;
+    width: 100%;
+    flex: auto;
+}

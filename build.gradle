@@ -17,6 +17,8 @@ repositories {
 }
 
 dependencies {
+    compile 'org.webjars:jquery:3.5.1'
+    compile 'org.webjars:bootstrap:4.5.3'
     implementation 'org.apache.commons:commons-lang3:3.11'
     implementation 'javax.inject:javax.inject:1'
     compileOnly 'org.projectlombok:lombok:1.18.6'
@@ -25,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 test {

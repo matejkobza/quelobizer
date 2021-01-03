@@ -30,12 +30,18 @@ public class QueleaParser {
     }
 
     public QueleaStatus getStatus() throws IOException {
+        if (queleaProperties.getUrl() == null) {
+            return new QueleaStatus();
+        }
         Document status = Jsoup.connect(queleaProperties.getUrl() + "/status").get();
         String[] statuses = status.body().text().split(",");
         return new QueleaStatus("true".equals(statuses[0]), "true".equals(statuses[1]), "true".equals(statuses[2]));
     }
 
     public String getLyrics() throws IOException {
+        if (queleaProperties.getUrl() == null) {
+            return "";
+        }
         Document lyrics = Jsoup.connect(queleaProperties.getUrl() + "/lyrics").get();
         Elements current = lyrics.getElementsByClass("current");
         current.html();

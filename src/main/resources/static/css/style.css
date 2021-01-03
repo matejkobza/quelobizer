@@ -3,6 +3,12 @@
 }
 html, body {
     font-family: Arial, sans-serif;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+p {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 .content {
     position: absolute;
@@ -11,4 +17,14 @@ html, body {
     clear: both;
     width: 100%;
     flex: auto;
+
+}
+.overlay {
+    min-height: 170pt;
+    padding-top: 10pt;
+    padding-bottom: 10pt;
+    background: rgba(255, 255, 255, 0.5);
+}
+.test {
+    background-color: #000;
 }

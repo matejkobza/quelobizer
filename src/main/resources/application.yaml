@@ -1,2 +1,4 @@
 server:
   port: 8099
+quelea:
+  refreshInterval: 500

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Quelobizer - Configuration</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<th:block th:if="${error}">
-    <div class="error" th:text="${error}"></div>
-</th:block>
+<div th:if="${error}" class="error" th:text="${error}"></div>
 <form action="#" th:action="@{/config}" th:object="${queleaProperties}" method="post">
     <h1>Quelea server properties:</h1>
     <table>
@@ -28,8 +26,8 @@
             </td>
         </tr>
     </table>
-    <input type="submit" value="Go"/><br /><br />
-    You can find the url in quelea settings:<br />
+    <input type="submit" value="Go"/><br/><br/>
+    You can find the url in quelea settings:<br/>
     <img th:src="@{/images/settings.png}" width="800" alt="quelea settings screen"/>
 </form>
 </body>

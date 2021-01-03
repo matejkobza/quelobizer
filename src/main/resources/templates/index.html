@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Quelobizer - Lyrics</title>
-    <script type="application/javascript">
-        function init() {
-            setInterval(function () {
-                window.location.reload();
-            }, 500);
-        }
+    <script xmlns:th="http://www.thymeleaf.org" type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        const isTest = /*[[${isTest}]]*/ 'false';
+        const refreshInterval = /*[[${refreshInterval}]]*/ '500';
+        /*]]>*/
     </script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/default.js}"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <style>
         html, body {
-            color: #afafaf;
             width: 100%;
             text-align: center;
             font-size: 35pt;
         }
     </style>
 </head>
-<body onload="init()">
+<body th:class="${#bools.isTrue(isTest)} ? test : ''">
 <div class="content">
-    <span th:utext="${lyrics}"></span>
-<!--    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm:ss')}"></span>-->
+    <div th:class="${#bools.isTrue(options.overlay)} ? overlay : ''" th:fragment="lyrics">
+        <span th:utext="${lyrics}"></span>
+    </div>
 </div>
 </body>
 </html>

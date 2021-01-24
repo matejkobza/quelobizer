@@ -66,22 +66,20 @@ public class HomeController {
 
     @PostMapping("/config")
     public ModelAndView submitConfig(@ModelAttribute QueleaProperties queleaProperties, ModelAndView modelAndView) {
-        try {
-            if (StringUtils.isEmpty(queleaProperties.getUrl())) {
-                throw new IllegalArgumentException(queleaProperties.getUrl());
-            }
-            this.queleaProperties.setUrl(queleaProperties.getUrl());
-            this.queleaProperties.setPassword(queleaProperties.getPassword());
-            queleaParser.login();
+        if (StringUtils.isEmpty(queleaProperties.getUrl())) {
+            throw new IllegalArgumentException(queleaProperties.getUrl());
+        }
+        this.queleaProperties.setUrl(queleaProperties.getUrl());
+        this.queleaProperties.setPassword(queleaProperties.getPassword());
+        if (queleaParser.login()) {
             queleaParser.getStatus();
             modelAndView.addObject("defaultUrl", "http://localhost:" + port);
             modelAndView.setViewName("success");
-        } catch (IOException | IllegalArgumentException e) {
+        } else {
             this.queleaProperties.clear();
             modelAndView.addObject("error", "Wrong quelea url");
             modelAndView.setViewName("config");
         }
         return modelAndView;
     }
-
 }

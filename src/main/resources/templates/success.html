@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Quelobizer - Success</title>
+    <div th:replace="fragment/head"></div>
 </head>
 <body>
-You may use following url in OBS:
-<h1><a th:href="${defaultUrl}" th:text="${defaultUrl}"></a></h1>
-
-<!--<ul>-->
-<!--    <li><a href="">Settings</a></li>-->
-<!--    <li><a href="">Test screen</a></li>-->
-<!--</ul>-->
+<div th:replace="fragment/navbar"></div>
+<div class="container p-5">
+    <div class="container-fluid">
+        <h1>Quelea server configuration successful!</h1>
+        <span>You may use following url in OBS: <strong><a th:href="${defaultUrl}" th:text="${defaultUrl}"></a></strong></span>
+    </div>
+</div>
 </body>
 </html>

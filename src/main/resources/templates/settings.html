@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Quelobizer - Settings</title>
+    <div th:replace="fragment/head"></div>
+</head>
+<body>
+<div th:replace="fragment/navbar"></div>
+<div class="container p-5">
+    <div class="container-fluid">
+        <h1>Quelobizer settings:</h1>
+        <div th:if="${isSaved}" class="alert alert-success alert-primary alert-dismissible fade show" role="alert">
+            <div>Successfully saved</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="#" th:action="@{/settings}" th:object="${viewOptions}" method="post">
+            <div class="form-group">
+                <label for="textColor">Text color</label>
+                <input class="form-control" id="textColor" name="textColor" type="text" th:field="*{textColor}"/>
+            </div>
+            <div class="form-group">
+                <label for="font-family">Font family</label>
+                <input class="form-control" id="font-family" name="fontFamily" type="text" th:field="*{fontFamily}"/>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" id="overlay" name="overlay" th:field="*{overlay}" type="checkbox"/>
+                    <label class="form-check-label" for="overlay">Use overlay</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="backgroundColor">Background color</label>
+                <input class="form-control" id="backgroundColor" name="backgroundColor" type="text"
+                       th:field="*{backgroundColor}"/>
+            </div>
+            <div class="form-group">
+                <label for="backgroundOpacity">Background opacity</label>
+                <input class="form-control" id="backgroundOpacity" name="backgroundOpacity" type="text"
+                       th:field="*{backgroundOpacity}"/>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save"/><br/><br/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

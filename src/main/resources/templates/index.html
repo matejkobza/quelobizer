@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Quelobizer - Lyrics</title>
+    <th:block th:if="${#httpServletRequest.requestURI.contains('test')}">
+        <th:block th:replace="fragment/head"/>
+    </th:block>
     <script xmlns:th="http://www.thymeleaf.org" type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
         const isTest = /*[[${isTest}]]*/ 'false';
@@ -14,15 +17,21 @@
     <style>
         html, body {
             width: 100%;
-            text-align: center;
+
+        }
+        .content {
             font-size: 35pt;
+            text-align: center;
         }
     </style>
 </head>
 <body th:class="${#bools.isTrue(isTest)} ? test : ''">
+<th:block th:if="${#httpServletRequest.requestURI.contains('test')}">
+    <th:block th:replace="fragment/navbar"/>
+</th:block>
 <div class="content">
-    <div th:class="${#bools.isTrue(options.overlay)} ? overlay : ''" th:fragment="lyrics">
-        <span th:utext="${lyrics}"></span>
+    <div th:style="${#bools.isTrue(options.overlay) && #bools.isFalse(isBlank) ? 'background-color: rgba(' + options.backgroundColorRGBA + ');' : ''}" th:class="${#bools.isTrue(options.overlay) && #bools.isFalse(isBlank)} ? overlay : ''" th:fragment="lyrics">
+        <span th:style="${'color: ' + options.textColor + ';font-family: ' + options.fontFamily + ';'}" th:utext="${lyrics}"></span>
     </div>
 </div>
 </body>

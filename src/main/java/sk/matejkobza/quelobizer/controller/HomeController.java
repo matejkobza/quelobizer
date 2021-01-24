@@ -1,6 +1,5 @@
 package sk.matejkobza.quelobizer.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import sk.matejkobza.quelobizer.model.QueleaProperties;
 import sk.matejkobza.quelobizer.model.QueleaStatus;
-import sk.matejkobza.quelobizer.model.ViewOptions;
 import sk.matejkobza.quelobizer.parser.QueleaParser;
+import sk.matejkobza.quelobizer.service.ViewOptionsManager;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class HomeController {
     private QueleaProperties queleaProperties;
 
     @Inject
-    private ViewOptions viewOptions;
+    private ViewOptionsManager viewOptionsManager;
 
     @Value("${server.port:8080}")
     private long port;
@@ -40,6 +39,8 @@ public class HomeController {
             modelAndView.setViewName("index");
         }
 
+        modelAndView.addObject("isBlank", false);
+
         if (request.getRequestURI().contains("test")) {
             modelAndView.addObject("lyrics", new Date());
         } else {
@@ -48,11 +49,12 @@ public class HomeController {
                 modelAndView.addObject("lyrics", queleaParser.getLyrics());
             }
 
-            viewOptions.setOverlay(!status.isBlankScreen());
+            modelAndView.addObject("isBlank", status.isBlankScreen());
         }
 
         modelAndView.addObject("isTest", request.getRequestURI().contains("test"));
-        modelAndView.addObject("options", viewOptions);
+        modelAndView.addObject("options", viewOptionsManager.get());
+
         modelAndView.addObject("refreshInterval", queleaProperties.getRefreshInterval());
         return modelAndView;
     }
@@ -66,9 +68,6 @@ public class HomeController {
 
     @PostMapping("/config")
     public ModelAndView submitConfig(@ModelAttribute QueleaProperties queleaProperties, ModelAndView modelAndView) {
-        if (StringUtils.isEmpty(queleaProperties.getUrl())) {
-            throw new IllegalArgumentException(queleaProperties.getUrl());
-        }
         this.queleaProperties.setUrl(queleaProperties.getUrl());
         this.queleaProperties.setPassword(queleaProperties.getPassword());
         if (queleaParser.login()) {
@@ -80,6 +79,13 @@ public class HomeController {
             modelAndView.addObject("error", "Wrong quelea url");
             modelAndView.setViewName("config");
         }
+        return modelAndView;
+    }
+
+    @GetMapping("/success")
+    public ModelAndView success(ModelAndView modelAndView) {
+        modelAndView.setViewName("success");
+        modelAndView.addObject("defaultUrl", "http://localhost:" + port);
         return modelAndView;
     }
 }

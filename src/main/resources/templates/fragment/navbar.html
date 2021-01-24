@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <title>Quelobizer - Lyrics</title>
-</head>
-<body>
-<!--todo matejkobza-->
-</body>
-</html>
+<div class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation" xmlns:th="http://www.thymeleaf.org">
+    <a class="navbar-brand" href="https://github.com/matejkobza/quelobizer">Quelobizer</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('config') ? 'active':''}">
+            <a class="nav-link" th:unless="${authenticated}" th:href="@{/config}">Configuration</a>
+        </li>
+        <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('success') ? 'active':''}">
+            <a class="nav-link" th:if="${authenticated}" th:href="@{/success}">Configuration</a>
+        </li>
+        <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('settings') ? 'active':''}">
+            <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+        <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('test') ? 'active':''}">
+            <a class="nav-link" th:href="@{/test}">Demo</a>
+        </li>
+    </ul>
+</div>

@@ -12,6 +12,7 @@ public class QueleaProperties {
 
     private String url;
     private String password;
+    private boolean authenticated;
 
     @Value("${quelea.refreshInterval}")
     private Long refreshInterval;
@@ -19,5 +20,6 @@ public class QueleaProperties {
     public void clear() {
         this.url = null;
         this.password = null;
+        this.authenticated = false;
     }
 }

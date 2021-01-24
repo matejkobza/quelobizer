@@ -32,10 +32,12 @@ public class QueleaParser {
                     .method(Connection.Method.POST)
 //                .userAgent(USER_AGENT)
                     .execute();
+            queleaProperties.setAuthenticated(true);
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.warn("Unable to login. Check quelea is running and server is enabled in settings");
         }
+        queleaProperties.setAuthenticated(false);
         return false;
     }
 

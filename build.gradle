@@ -9,7 +9,10 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 application {
+    archivesBaseName = 'quelobizer'
+    version = 'v0.0.4'
     mainClass = 'sk.matejkobza.quelobizer.QuelobizerApplication'
+    applicationDefaultJvmArgs = ['-Xmx128m', '-XX:+UseSerialGC', '-Xss512k', '-XX:MaxRAM=128M']
 }
 
 repositories {

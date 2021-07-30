@@ -1,4 +1,7 @@
 server:
   port: 8099
+  tomcat:
+    threads:
+      max: 1
 quelea:
   refreshInterval: 500
